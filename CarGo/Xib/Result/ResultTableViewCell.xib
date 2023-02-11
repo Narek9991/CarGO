@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleAspectFit" restorationIdentifier="ResultTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultTableViewCell" rowHeight="119" id="KGk-i7-Jjw" customClass="ResultTableViewCell" customModule="CarGo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c25-PL-Sdo">
+                        <rect key="frame" x="278.5" y="0.0" width="38.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUP-il-G67">
+                        <rect key="frame" x="3" y="20.5" width="65" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aad-Rd-AEJ">
+                        <rect key="frame" x="3" y="44" width="85.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFK-W7-ZbT">
+                        <rect key="frame" x="3" y="72.5" width="34" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gd-jf-0bC">
+                        <rect key="frame" x="3" y="98.5" width="28.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsf-U5-2o9">
+                        <rect key="frame" x="272" y="39" width="45" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="Mvf-oa-HKG"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="bookmark" catalog="system"/>
+                        <connections>
+                            <action selector="favoriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ASO-oZ-54f"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-fX-c32">
+                        <rect key="frame" x="283" y="98.5" width="34" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhD-sw-XIg">
+                        <rect key="frame" x="3" y="0.0" width="30.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Aad-Rd-AEJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="43w-8e-Os9"/>
+                    <constraint firstAttribute="trailing" secondItem="c25-PL-Sdo" secondAttribute="trailing" constant="3" id="9U0-hO-AsP"/>
+                    <constraint firstItem="hUP-il-G67" firstAttribute="top" secondItem="BhD-sw-XIg" secondAttribute="bottom" id="FMx-2Y-Vh8"/>
+                    <constraint firstItem="BhD-sw-XIg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FYw-Ld-4Gj"/>
+                    <constraint firstAttribute="trailing" secondItem="Hsf-U5-2o9" secondAttribute="trailing" constant="3" id="K8b-aA-FNT"/>
+                    <constraint firstItem="nFK-W7-ZbT" firstAttribute="top" secondItem="Aad-Rd-AEJ" secondAttribute="bottom" constant="8" id="KXW-V0-Bew"/>
+                    <constraint firstItem="Aad-Rd-AEJ" firstAttribute="top" secondItem="hUP-il-G67" secondAttribute="bottom" constant="3" id="MgB-DO-zn9"/>
+                    <constraint firstItem="BhD-sw-XIg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="TOs-8s-PoM"/>
+                    <constraint firstAttribute="bottom" secondItem="ggU-fX-c32" secondAttribute="bottom" id="Tdh-hj-RXb"/>
+                    <constraint firstAttribute="bottom" secondItem="8Gd-jf-0bC" secondAttribute="bottom" id="UED-mI-Hw5"/>
+                    <constraint firstItem="8Gd-jf-0bC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="XpO-BG-Vwm"/>
+                    <constraint firstItem="ggU-fX-c32" firstAttribute="top" secondItem="Hsf-U5-2o9" secondAttribute="bottom" constant="28.5" id="Y3M-mD-bAT"/>
+                    <constraint firstItem="c25-PL-Sdo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YLz-Nm-bSn"/>
+                    <constraint firstItem="Hsf-U5-2o9" firstAttribute="top" secondItem="c25-PL-Sdo" secondAttribute="bottom" constant="18" id="ayq-UU-Yfb"/>
+                    <constraint firstAttribute="trailing" secondItem="ggU-fX-c32" secondAttribute="trailing" constant="3" id="btX-bv-PTJ"/>
+                    <constraint firstItem="hUP-il-G67" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="mQV-Ii-cCx"/>
+                    <constraint firstItem="nFK-W7-ZbT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="qsR-of-A6e"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="8Pp-qF-2dn"/>
+            <connections>
+                <outlet property="cityLabel" destination="BhD-sw-XIg" id="ny5-Io-6qU"/>
+                <outlet property="dateAndSortLabel" destination="nFK-W7-ZbT" id="XlI-y2-Nhr"/>
+                <outlet property="dateLabel" destination="ggU-fX-c32" id="iAQ-4j-tiE"/>
+                <outlet property="descriptinLabel" destination="Aad-Rd-AEJ" id="kPK-cz-57B"/>
+                <outlet property="distanceLabel" destination="hUP-il-G67" id="FUx-Eg-NbX"/>
+                <outlet property="favoriteButton" destination="Hsf-U5-2o9" id="PbS-fe-NT9"/>
+                <outlet property="infoLabel" destination="8Gd-jf-0bC" id="8Yp-gy-Z8g"/>
+                <outlet property="priceLabel" destination="c25-PL-Sdo" id="DgW-OA-bWs"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="92.075892857142847"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+    </resources>
+</document>
