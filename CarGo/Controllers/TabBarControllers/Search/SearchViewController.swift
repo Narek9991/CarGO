@@ -7,13 +7,9 @@
 
 import UIKit
 import AudioToolbox
-import GooglePlaces
-import NotificationCenter
 
 class SearchViewController: UIViewController{
    
-
-
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var carButton: UIButton!
     @IBOutlet weak var enterCity1TextField: UITextField!
@@ -22,38 +18,20 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var rotateImageView: UIImageView!
     @IBOutlet weak var titleTableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var searchView: UIView!
     
-    let notificationCenter = NotificationCenter.default
-    let str : [Int : String] = [0 : "a",
-                                1 : "b",
-                                2 : "c",
-                                3 : "d",
-                                4 : "e",
-                                5 : "f",
-                                6 : "h",
-                                7 : "i",
-                                8 : "j"]
     
+    let userDefaults = UserDefaults.standard
+    
+    var str = ["Բարձման տեսակ", "Քաշ (տ.)", "Բեռի անվանում", "Վճարում",]
+
     @IBAction func searchButton(_ sender: UIButton) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "SearchResultVC") as! SearchResultVC
-//        vc.navigationItem.leftBarButtonItem = navigationItem.backBarButtonItem
-//        let backItem = UIBarButtonItem()
-//        backItem.title = "back"
-//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backItem
-//        self.present(vc, animated: true)
-//        //self.navigationController?.pushViewController(vc, animated: true)
-        self.tabBarController?.tabBar.isHidden = true
         
-        let dict = ["City1" : enterCity1TextField.text,
-                    "City2" : enterCity2TextField.text]
-        notificationCenter.post(name: NSNotification.Name.sendCityNamesNC, object: self, userInfo: dict)
-        notificationCenter.post(name: NSNotification.Name.sendNC, object: self)
-//        if enterCity1TextField.text == "Erevan" && enterCity2TextField.text == "Moscow" {
-//            Utils.isArmeniaToMoscow = true
-//        }
-        Utils.city1 = enterCity1TextField.text!
-        Utils.city2 = enterCity2TextField.text!
+        addSearchParameter()
+        
+        Utils.startCity = enterCity1TextField.text!
+        Utils.endCity = enterCity2TextField.text!
+        Utils.filterCarGoDataArray.removeAll()
         
     }
     
@@ -76,7 +54,31 @@ class SearchViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurePage()
+        
+        
+        //userDefaults.removeObject(forKey: "\(Utils.id)userModel")
+        //UserDefaults.resetStandardUserDefaults()
+        
+        setupToHideKeyboardOnTapOnView()
+        rotateImageView.transform = rotateImageView.transform.rotated(by: Double.pi / 2)
+
+        
+        self.tabBarController?.tabBar.backgroundColor = .white
+        
+        print("id:: \(Utils.id),,, idIndex\(Utils.idIndex)")
+        
+       
+        
+        
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        buttonsCorners()
+        
+        
         self.titleTableView.register(UINib(nibName: "FilterTableViewCell", bundle: nil), forCellReuseIdentifier: "FilterTableViewCell")
         
         self.titleTableView.delegate = self
@@ -90,26 +92,111 @@ class SearchViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        self.tabBarController?.tabBar.isHidden = false
+        
+        configurePage()
+        
+        titleTableView.reloadData()
+        
+        var isOk = false
+        
+        if userDefaults.userModel.carGoDataArray.isEmpty {
+            isOk = false
+        }else{
+            isOk = true
+        }
+
+            
+        if !isOk {
+            
+            userDefaults.userModel = UserModel(id: Utils.id, carGoDataArray: Utils.carGoDataArray, selectedCarGoDataArray: Utils.selectedCarGoDataArray, openedResults: Utils.openedResults, weightArray:  Utils.weightArray, selectedWeightArray: Utils.selectedWeightArray, loadingTypeArray: Utils.loadingTypeArray, selectedLoadingTypeArray: Utils.selectedLoadingTypeArray, carGoNameArray:  Utils.carGoNameArray, selectedCarGoNameArray: Utils.selectedCarGoNameArray, paymentTypeArray:  Utils.paymentTypeArray, selectedPaymentTypeArray: Utils.selectedPaymentTypeArray )
+            userDefaults.userModel.isSuccess = true
+            userDefaults.set(Utils.phoneNumber, forKey: "Utils.phoneNumber")
+        }else {
+            addData()
+        }
+        
+       
+    }
+    
+    
+    func addData () {
+        
+        
+//        userDefaults.removeObject(forKey: "userModel")
+//        userDefaults.removeObject(forKey: "phoneNumberArray")
+//        userDefaults.removeObject(forKey: "\(Utils.id)userModel")
+        
+        guard let phoneNumber = userDefaults.string(forKey: "Utils.phoneNumber") else {
+            return
+        }
+        Utils.phoneNumber = phoneNumber
+        
+        
+        let id = userDefaults.integer(forKey: "Utils.id")
+        
+        Utils.id = id
+        
+            
+       let selectedCarGoDataArray = userDefaults.userModel.selectedCarGoDataArray
+            Utils.selectedCarGoDataArray = selectedCarGoDataArray
+
+        let carGoDataArray = userDefaults.userModel.carGoDataArray
+            Utils.carGoDataArray = carGoDataArray
+        
+        let weightArray = userDefaults.userModel.weightArray
+        Utils.weightArray = weightArray
+        
+        let selectedWeightArray = userDefaults.userModel.selectedWeightArray
+        Utils.selectedWeightArray = selectedWeightArray
+        
+        let loadingTypeArray = userDefaults.userModel.loadingTypeArray
+        Utils.loadingTypeArray = loadingTypeArray
+        
+        let selectedLoadingTypeArray = userDefaults.userModel.selectedLoadingTypeArray
+        Utils.selectedLoadingTypeArray = selectedLoadingTypeArray
+        
+        let carGoNameArray = userDefaults.userModel.carGoNameArray
+        Utils.carGoNameArray = carGoNameArray
+        
+        let selectedCarGoNameArray = userDefaults.userModel.selectedCarGoNameArray
+        Utils.selectedCarGoNameArray = selectedCarGoNameArray
+
+        let paymentTypeArray = userDefaults.userModel.paymentTypeArray
+        Utils.paymentTypeArray = paymentTypeArray
+        
+        let selectedPaymentTypeArray = userDefaults.userModel.selectedPaymentTypeArray
+        Utils.selectedPaymentTypeArray = selectedPaymentTypeArray
+        
+        let loadingTypeString = userDefaults.userModel.loadingTypeString
+        Utils.loadingTypeString = loadingTypeString
+        
+        let weightString = userDefaults.userModel.weightString
+        Utils.weightString = weightString
+        
+        let carGoNameString = userDefaults.userModel.carGoNameString
+        Utils.carGoNameString = carGoNameString
+        
+        let paymentTypeString = userDefaults.userModel.paymentTypeString
+        Utils.paymentTypeString = paymentTypeString
+    
     }
     
     func configurePage() {
-        buttonsCorners()
-        addGestureToCity1()
+        
         addGestureToRotateImage()
-        self.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
 
         self.view.backgroundColor = Utils.appColor
         carButton.backgroundColor = .white
         carGoButton.backgroundColor = .lightGray
         carButton.titleLabel?.font = UIFont(name: "Helvetica", size: 11)
         carGoButton.titleLabel?.font = UIFont(name: "Helvetica", size: 11)
-        rotateImageView.transform = rotateImageView.transform.rotated(by: Double.pi / 2)
+        
     }
     
     func buttonsCorners() {
         
-        searchButton.roundCorners(corners: .allCorners, radius: searchButton.bounds.height / 2)
+        searchView.roundCorners(corners: .allCorners, radius: searchView.bounds.height / 4)
+        searchButton.roundCorners(corners: .allCorners, radius: searchButton.bounds.height / 4)
         buttonsView.roundCorners(corners: .allCorners, radius: buttonsView.bounds.height / 2)
         self.carButton.roundCorners(corners: [.allCorners], radius: carButton.bounds.height / 2)
         self.carGoButton.roundCorners(corners: [.allCorners], radius: carGoButton.bounds.height / 2)
@@ -117,40 +204,52 @@ class SearchViewController: UIViewController{
         rotateImageView.roundCorners(corners: [.topLeft,.topRight, .bottomLeft, .bottomRight], radius: rotateImageView.bounds.width / 2)
     }
     
-    func addGestureToCity1() {
-        self.enterCity1TextField.isUserInteractionEnabled = true
+    func addFilterParam(array: [FilterData], string: inout String, bool: inout Bool, userDefaultString: inout String) {
+        if !array.isEmpty {
+            string = ""
+            userDefaultString = ""
+            for i in 0...array.count {
+                if i == array.count {
+                    break
+                }else{
+                    string += "\(array[i].name), "
+                    userDefaults.set(string, forKey: "string")
+                    Utils.filterDataArray.append(array[i])
+                }
+            }
+            Utils.isOkButtonTapped = false
+            bool = true
+            userDefaults.set(bool, forKey: "bool")
+            
+        }else{
+            string = ""
+            bool = false
+            Utils.isOkButtonTapped = false
+            userDefaults.set(bool, forKey: "bool")
+        }
         
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.searchAddresses(_:)))
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.searchAddresses(_:)))
         
-        //self.enterCity1TextField.addGestureRecognizer(tap)
     }
     
-    @objc func searchAddresses(_ tapGesture: UITapGestureRecognizer) {
+    func addFilterData(array: [FilterData]) {
+        if !array.isEmpty {
+            for i in 0...array.count {
+                if i == array.count {
+                    break
+                }else{
+                    Utils.filterDataArray.append(array[i])
+                }
+            }
+        }
         
-//        let autocompletecontroller = GMSAutocompleteViewController()
-//                autocompletecontroller.delegate = self
-//                let filter = GMSAutocompleteFilter()
-//                filter.type = .city  //suitable filter type
-//                  //appropriate country code
-//                autocompletecontroller.autocompleteFilter = filter
-//                self.present(autocompletecontroller, animated: true, completion: nil)
-//        
-//        let autocompleteFilter = GMSAutocompleteFilter()
-//        autocompleteFilter.type = GMSPlacesAutocompleteTypeFilter.city
-//        GMSPlacesClient.autocom
-//        let parentView = self.parent as! TravelRequestVC
-
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        autocompleteController.modalPresentationStyle = .fullScreen
-        // Specify the place data types to return.
-
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-                                                  UInt(GMSPlaceField.placeID.rawValue) |  UInt(GMSPlaceField.coordinate.rawValue) )
-        autocompleteController.placeFields = fields
+    }
     
-        present(autocompleteController, animated: true, completion: nil)
+    func addSearchParameter() {
+        Utils.filterDataArray.removeAll()
+        addFilterData(array: Utils.selectedLoadingTypeArray)
+        addFilterData(array: Utils.selectedWeightArray)
+        addFilterData(array: Utils.selectedCarGoNameArray)
+        addFilterData(array: Utils.selectedPaymentTypeArray)
     }
     
     func addGestureToRotateImage() {
@@ -163,10 +262,9 @@ class SearchViewController: UIViewController{
     
     @objc func rotateCityNames(_ tapGesture: UITapGestureRecognizer) {
         
-        var name = enterCity1TextField.text
+        let name = enterCity1TextField.text
         enterCity1TextField.text = enterCity2TextField.text
         enterCity2TextField.text = name
-        print("city1 = \(enterCity1TextField.text); city2 = \(enterCity2TextField.text)")
         
     }
 }
@@ -177,16 +275,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         print("tiv = \(indexPath.item)")
+        
+        Utils.index = indexPath.row
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddFilterViewController") as! AddFilterViewController
+
+        navigationController?.pushViewController(vc, animated: true)
+        
        
         return indexPath
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.item)")
-        if indexPath.item == 8 {
-            let vc = MyViewController()
-            //self.present(vc, animated: true, completion: nil)
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -198,34 +298,65 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        cell.titleLabel?.text = str[indexPath.row]
+        print("aaasss\(cell.bounds.width)")
+        print("aaassstableView\(tableView.bounds.width)")
         
+        if Utils.isOneLounch {
+            //cell.titleLabel?.text = str[indexPath.row]
+        }
+        
+        if Utils.isOkButtonTapped {
+            if Utils.selectedLoadingTypeArray.isEmpty {
+                Utils.isOkButtonTapped = false
+            }
+            if Utils.index == 0{
+                addFilterParam(array: Utils.selectedLoadingTypeArray, string: &Utils.loadingTypeString, bool: &Utils.isChoosedLoadingType, userDefaultString: &userDefaults.userModel.loadingTypeString)
+                userDefaults.userModel.loadingTypeString = Utils.loadingTypeString
+                tableView.reloadData()
+                
+            } else if Utils.index == 1{
+                addFilterParam(array: Utils.selectedWeightArray, string: &Utils.weightString, bool: &Utils.isChoosedWeight, userDefaultString: &userDefaults.userModel.weightString)
+                userDefaults.userModel.weightString = Utils.weightString
+                tableView.reloadData()
+                
+            } else if Utils.index == 2{
+                addFilterParam(array: Utils.selectedCarGoNameArray, string: &Utils.carGoNameString, bool: &Utils.isChoosedCarGoName, userDefaultString: &userDefaults.userModel.carGoNameString)
+                userDefaults.userModel.carGoNameString = Utils.carGoNameString
+                tableView.reloadData()
+                    
+            } else if Utils.index == 3{
+                addFilterParam(array: Utils.selectedPaymentTypeArray, string: &Utils.paymentTypeString, bool: &Utils.isChoosedPaymentType, userDefaultString: &userDefaults.userModel.paymentTypeString)
+                userDefaults.userModel.paymentTypeString = Utils.paymentTypeString
+                tableView.reloadData()
+
+            }
+        }else{
+            str = ["Բարձման տեսակ", "Քաշ (տ.)", "Բեռի անվանում", "Վճարում",]
+        }
+        
+
+        print("Utils.loadingTypeString:: \(Utils.loadingTypeString)")
+        if !Utils.loadingTypeString.isEmpty {
+            str[0] = Utils.loadingTypeString
+        }
+        print("Utils.weightString:: \(Utils.weightString)")
+        if !Utils.weightString.isEmpty {
+            str[1] = Utils.weightString
+        }
+        
+        print("Utils.carGoNameString:: \(Utils.carGoNameString)")
+        if !Utils.carGoNameString.isEmpty {
+            str[2] = Utils.carGoNameString
+        }
+        
+        print("Utils.paymentTypeString:: \(Utils.paymentTypeString)")
+        if !Utils.paymentTypeString.isEmpty {
+            str[3] = Utils.paymentTypeString
+        }
+        
+        cell.titleLabel?.text = str[indexPath.row]
         
         return cell
     }
-    
-    
-    
-    
 }
 
-extension SearchViewController: GMSAutocompleteViewControllerDelegate  {
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("complete")
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        print("failed")
-    }
-    
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension NSNotification.Name {
-    
-    static let sendCityNamesNC = NSNotification.Name.init("sendCityNamesNC")
-    static let sendNC = NSNotification.Name.init("sendNC")
-    
-}

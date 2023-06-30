@@ -7,24 +7,24 @@
 
 import Foundation
 
-class CarGOData {
-    var initialCity : String = ""
-    var finalCity : String = ""
-    var distance : Int = 0
-    var date : DateComponents = DateComponents( year: 2023, month: 03, day: 12)
-    var description : String = ""
-    var info : String = ""
-    var price : Int = 0
+struct CarGOData: Codable {
+    var initialCity: String = ""
+    var finalCity: String = ""
+    var carGoName: String = ""
+    var distance: Int = 0
+    var date: DateComponents = DateComponents( year: 2023, month: 03, day: 12)
+    var carGoWeight: String = ""
+    var description: String = ""
+    var loadingType: String = ""
+    var info: String = ""
+    var price: Int = 0
+    var paymentType: String = ""
+    var moreInfo: String = ""
+    var isBookmarksSelected = false
+    var id: Int = 0
+    var startCityCoordinate: LatLongCoordinate = LatLongCoordinate(lat: 0.0, long: 0.0)
+    var finalCityCoordinate: LatLongCoordinate = LatLongCoordinate(lat: 0.0, long: 0.0)
     
-    init(initialCity : String, finalCity : String, distance : Int, description : String, info : String, price : Int, date : DateComponents) {
-        self.initialCity = initialCity
-        self.finalCity = finalCity
-        self.distance = distance
-        self.description = description
-        self.info = info
-        self.price = price
-        self.date = date
-        
-    }
     
 }
+

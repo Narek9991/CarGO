@@ -16,6 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGg-Uz-ZeJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c25-PL-Sdo">
                         <rect key="frame" x="278.5" y="0.0" width="38.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -52,7 +58,7 @@
                             <constraint firstAttribute="width" constant="45" id="Mvf-oa-HKG"/>
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" image="bookmark" catalog="system"/>
+                        <state key="normal" image="star.fill" catalog="system"/>
                         <connections>
                             <action selector="favoriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ASO-oZ-54f"/>
                         </connections>
@@ -78,16 +84,20 @@
                     <constraint firstAttribute="trailing" secondItem="Hsf-U5-2o9" secondAttribute="trailing" constant="3" id="K8b-aA-FNT"/>
                     <constraint firstItem="nFK-W7-ZbT" firstAttribute="top" secondItem="Aad-Rd-AEJ" secondAttribute="bottom" constant="8" id="KXW-V0-Bew"/>
                     <constraint firstItem="Aad-Rd-AEJ" firstAttribute="top" secondItem="hUP-il-G67" secondAttribute="bottom" constant="3" id="MgB-DO-zn9"/>
+                    <constraint firstItem="sGg-Uz-ZeJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="R6B-dx-7dZ"/>
                     <constraint firstItem="BhD-sw-XIg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="TOs-8s-PoM"/>
                     <constraint firstAttribute="bottom" secondItem="ggU-fX-c32" secondAttribute="bottom" id="Tdh-hj-RXb"/>
                     <constraint firstAttribute="bottom" secondItem="8Gd-jf-0bC" secondAttribute="bottom" id="UED-mI-Hw5"/>
+                    <constraint firstAttribute="trailing" secondItem="sGg-Uz-ZeJ" secondAttribute="trailing" id="VkG-Go-uAk"/>
                     <constraint firstItem="8Gd-jf-0bC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="XpO-BG-Vwm"/>
+                    <constraint firstItem="sGg-Uz-ZeJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XyD-UR-N8z"/>
                     <constraint firstItem="ggU-fX-c32" firstAttribute="top" secondItem="Hsf-U5-2o9" secondAttribute="bottom" constant="28.5" id="Y3M-mD-bAT"/>
                     <constraint firstItem="c25-PL-Sdo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YLz-Nm-bSn"/>
                     <constraint firstItem="Hsf-U5-2o9" firstAttribute="top" secondItem="c25-PL-Sdo" secondAttribute="bottom" constant="18" id="ayq-UU-Yfb"/>
                     <constraint firstAttribute="trailing" secondItem="ggU-fX-c32" secondAttribute="trailing" constant="3" id="btX-bv-PTJ"/>
                     <constraint firstItem="hUP-il-G67" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="mQV-Ii-cCx"/>
                     <constraint firstItem="nFK-W7-ZbT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="qsR-of-A6e"/>
+                    <constraint firstAttribute="bottom" secondItem="sGg-Uz-ZeJ" secondAttribute="bottom" id="tBo-4m-Fpy"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="8Pp-qF-2dn"/>
@@ -97,6 +107,7 @@
                 <outlet property="dateLabel" destination="ggU-fX-c32" id="iAQ-4j-tiE"/>
                 <outlet property="descriptinLabel" destination="Aad-Rd-AEJ" id="kPK-cz-57B"/>
                 <outlet property="distanceLabel" destination="hUP-il-G67" id="FUx-Eg-NbX"/>
+                <outlet property="emptyResultLabel" destination="sGg-Uz-ZeJ" id="PnJ-f4-gEY"/>
                 <outlet property="favoriteButton" destination="Hsf-U5-2o9" id="PbS-fe-NT9"/>
                 <outlet property="infoLabel" destination="8Gd-jf-0bC" id="8Yp-gy-Z8g"/>
                 <outlet property="priceLabel" destination="c25-PL-Sdo" id="DgW-OA-bWs"/>
@@ -105,6 +116,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>

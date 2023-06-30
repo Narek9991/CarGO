@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterSearchTableViewCell" id="KGk-i7-Jjw" customClass="FilterSearchTableViewCell" customModule="CarGo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcA-3f-KXV">
+                        <rect key="frame" x="20" y="0.0" width="250" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="ruv-Fh-sSN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ub-Xm-CDx">
+                        <rect key="frame" x="270" y="0.0" width="50" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="t2x-Jn-0PL"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="black"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="selectedImage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QeH-XH-5Ps"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLG-jj-0iY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                        <connections>
+                            <action selector="selectedImage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GFL-gr-raa"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="8Ub-Xm-CDx" secondAttribute="bottom" id="6ZL-8Q-1PY"/>
+                    <constraint firstAttribute="trailing" secondItem="cLG-jj-0iY" secondAttribute="trailing" id="6cs-Mp-ENB"/>
+                    <constraint firstItem="dcA-3f-KXV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HyB-w2-uvp"/>
+                    <constraint firstItem="8Ub-Xm-CDx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Lt5-gW-71q"/>
+                    <constraint firstItem="cLG-jj-0iY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Mfg-Em-G56"/>
+                    <constraint firstAttribute="bottom" secondItem="dcA-3f-KXV" secondAttribute="bottom" id="Ysd-bc-gfc"/>
+                    <constraint firstAttribute="trailing" secondItem="8Ub-Xm-CDx" secondAttribute="trailing" id="cya-2y-Id0"/>
+                    <constraint firstAttribute="bottom" secondItem="cLG-jj-0iY" secondAttribute="bottom" id="ntw-qM-zsk"/>
+                    <constraint firstItem="8Ub-Xm-CDx" firstAttribute="leading" secondItem="dcA-3f-KXV" secondAttribute="trailing" id="t8U-2q-Nqu"/>
+                    <constraint firstItem="dcA-3f-KXV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="xMl-g3-qLU"/>
+                    <constraint firstItem="cLG-jj-0iY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yXY-WP-J2s"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="dcA-3f-KXV" id="u8C-vI-yAI"/>
+                <outlet property="selectedImages" destination="8Ub-Xm-CDx" id="I2G-ob-AbO"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

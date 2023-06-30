@@ -15,6 +15,7 @@ class FilterTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configurePage()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,8 +25,10 @@ class FilterTableViewCell: UITableViewCell {
     }
     
     func configurePage() {
+        //self.contentView.backgroundColor = Utils.appColor
         self.arrowSimbol?.text = "➤"
-        self.arrowSimbol?.textColor = .red
+        self.arrowSimbol?.textColor = Utils.appColor
+        
     }
     
 }
